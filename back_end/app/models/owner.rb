@@ -4,4 +4,5 @@ class Owner < ApplicationRecord
 
     validates :name, :password_digest, :email, presence: true 
     validates :email, uniqueness: true
+    
 end
