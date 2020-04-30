@@ -15,7 +15,7 @@ class Api::V1::AuthController < ApplicationController
     def auto_login
 
       if session_user
-        render json: {owner: owner}
+        render json: {owner: session_user}
       else 
         render json: {errors: "No such user"}
       end

@@ -2,15 +2,21 @@ class Api::V1::PropertiesController < ApplicationController
 # Might need to add the include to the create and update 
 
     def index
-        properties = Property.all 
-        render json: properties.to_json(:include => [{ :owner => { only: :name} }, :images])
+        properties = Property.all.with_attached_images
+
+        # render json: properties.to_json(:include => [{ :owner => { only: :name} }, :images])
+        render json: properties.map { |property|
+            images = property.images.map{|image| url_for(image)}
+            property.as_json.merge({images: images})
+        }
     end
 
     def show 
         property = Property.find(params[:id])
         images = property.images.map{|image| url_for(image)}
 
-        render json: property.to_json(:include => [{ :owner => { only: :name} }, :images])
+        # render json: property.to_json(:include => [{ :owner => { only: :name} }, :images])
+        render json: { property: property, images: images }
     end
 
     def create

@@ -4,7 +4,7 @@
 # Examples:
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   Character.create(name: 'Luke', movie: movies.first
 
 Owner.destroy_all 
 Property.destroy_all 
@@ -287,3 +287,57 @@ tenant94 = Tenant.create!(name: 'Umer Summers', password: '0000', email: 'usumme
 tenant95 = Tenant.create!(name: 'Nellie Todd', password: '0000', email: 'ntodd@gmail.com', phone_number: 7275806056, apartment: apartment103)
 tenant96 = Tenant.create!(name: 'Aaran Khan', password: '0000', email: 'akhan@yahoo.com', phone_number: 3839531380, apartment: apartment104)
 tenant97= Tenant.create!(name: 'Carole Baskin', password: '0000', email: 'cbaskin@yahoo.com', phone_number: 3097982238, apartment: apartment105)
+
+
+
+# Adding images
+property1.images.attach(io: File.open(Rails.root.join('images', 'p1', 'image1.jpg')), filename: 'image1.jpg', content_type: 'image/jpg')
+
+property1.images.attach(io: File.open(Rails.root.join('images', 'p1', 'image2.jpg')), filename: 'image2.jpg', content_type: "image/jpg")
+property1.images.attach(io: File.open(Rails.root.join('images', 'p1', 'image3.jpg')), filename: 'image3.jpg', content_type: "image/jpg")
+property1.images.attach(io: File.open(Rails.root.join('images', 'p1', 'image4.jpg')), filename: 'image4.jpg', content_type: "image/jpg")
+
+property2.images.attach(io: File.open(Rails.root.join('images', 'p2', 'image5.jpg')), filename: 'image5.jpg', content_type: "image/jpg")
+property2.images.attach(io: File.open(Rails.root.join('images', 'p2', 'image6.jpg')), filename: 'image6.jpg', content_type: "image/jpg")
+property2.images.attach(io: File.open(Rails.root.join('images', 'p2', 'image7.jpg')), filename: 'image7.jpg', content_type: "image/jpg")
+property2.images.attach(io: File.open(Rails.root.join('images', 'p2', 'image8.jpg')), filename: 'image8.jpg', content_type: "image/jpg")
+
+property3.images.attach(io: File.open(Rails.root.join('images', 'p3', 'image9.jpg')), filename: 'image9.jpg', content_type: "image/jpg")
+property3.images.attach(io: File.open(Rails.root.join('images', 'p3', 'image10.jpg')), filename: 'image10.jpg', content_type: "image/jpg")
+property3.images.attach(io: File.open(Rails.root.join('images', 'p3', 'image11.jpg')), filename: 'image11.jpg', content_type: "image/jpg")
+property3.images.attach(io: File.open(Rails.root.join('images', 'p3', 'image12.jpg')), filename: 'image12.jpg', content_type: "image/jpg")
+
+property4.images.attach(io: File.open(Rails.root.join('images', 'p4', 'image13.jpg')), filename: 'image13.jpg', content_type: "image/jpg")
+property4.images.attach(io: File.open(Rails.root.join('images', 'p4', 'image14.jpg')), filename: 'image14.jpg', content_type: "image/jpg")
+property4.images.attach(io: File.open(Rails.root.join('images', 'p4', 'image15.jpg')), filename: 'image15.jpg', content_type: "image/jpg")
+property4.images.attach(io: File.open(Rails.root.join('images', 'p4', 'image16.jpg')), filename: 'image16.jpg', content_type: "image/jpg")
+
+property5.images.attach(io: File.open(Rails.root.join('images', 'p5', 'image17.jpg')), filename: 'image17.jpg', content_type: "image/jpg")
+property5.images.attach(io: File.open(Rails.root.join('images', 'p5', 'image18.jpg')), filename: 'image18.jpg', content_type: "image/jpg")
+property5.images.attach(io: File.open(Rails.root.join('images', 'p5', 'image19.jpg')), filename: 'image19.jpg', content_type: "image/jpg")
+property5.images.attach(io: File.open(Rails.root.join('images', 'p5', 'image20.jpg')), filename: 'image20.jpg', content_type: "image/jpg")
+
+property6.images.attach(io: File.open(Rails.root.join('images', 'p6', 'image21.jpg')), filename: 'image21.jpg', content_type: "image/jpg")
+property6.images.attach(io: File.open(Rails.root.join('images', 'p6', 'image22.jpg')), filename: 'image22.jpg', content_type: "image/jpg")
+property6.images.attach(io: File.open(Rails.root.join('images', 'p6', 'image23.jpg')), filename: 'image23.jpg', content_type: "image/jpg")
+property6.images.attach(io: File.open(Rails.root.join('images', 'p6', 'image24.jpg')), filename: 'image24.jpg', content_type: "image/jpg")
+
+property7.images.attach(io: File.open(Rails.root.join('images', 'p7', 'image25.jpg')), filename: 'image25.jpg', content_type: "image/jpg")
+property7.images.attach(io: File.open(Rails.root.join('images', 'p7', 'image26.jpg')), filename: 'image26.jpg', content_type: "image/jpg")
+property7.images.attach(io: File.open(Rails.root.join('images', 'p7', 'image27.jpg')), filename: 'image27.jpg', content_type: "image/jpg")
+property7.images.attach(io: File.open(Rails.root.join('images', 'p7', 'image28.jpg')), filename: 'image28.jpg', content_type: "image/jpg")
+
+property8.images.attach(io: File.open(Rails.root.join('images', 'p8', 'image29.jpg')), filename: 'image29.jpg', content_type: "image/jpg")
+property8.images.attach(io: File.open(Rails.root.join('images', 'p8', 'image30.jpg')), filename: 'image30.jpg', content_type: "image/jpg")
+property8.images.attach(io: File.open(Rails.root.join('images', 'p8', 'image31.jpg')), filename: 'image31.jpg', content_type: "image/jpg")
+property8.images.attach(io: File.open(Rails.root.join('images', 'p8', 'image32.jpg')), filename: 'image32.jpg', content_type: "image/jpg")
+
+property9.images.attach(io: File.open(Rails.root.join('images', 'p9', 'image33.jpg')), filename: 'image33.jpg', content_type: "image/jpg")
+property9.images.attach(io: File.open(Rails.root.join('images', 'p9', 'image34.jpg')), filename: 'image34.jpg', content_type: "image/jpg")
+property9.images.attach(io: File.open(Rails.root.join('images', 'p9', 'image35.jpg')), filename: 'image35.jpg', content_type: "image/jpg")
+property9.images.attach(io: File.open(Rails.root.join('images', 'p9', 'image36.jpg')), filename: 'image36.jpg', content_type: "image/jpg")
+
+property10.images.attach(io: File.open(Rails.root.join('images', 'p10', 'image37.jpg')), filename: 'image37.jpg', content_type: "image/jpg")
+property10.images.attach(io: File.open(Rails.root.join('images', 'p10', 'image38.jpg')), filename: 'image38.jpg', content_type: "image/jpg")
+property10.images.attach(io: File.open(Rails.root.join('images', 'p10', 'image39.jpg')), filename: 'image39.jpg', content_type: "image/jpg")
+property10.images.attach(io: File.open(Rails.root.join('images', 'p10', 'image40.jpg')), filename: 'image40.jpg', content_type: "image/jpg")

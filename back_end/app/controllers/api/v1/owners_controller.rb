@@ -12,12 +12,12 @@ class Api::V1::OwnersController < ApplicationController
 
     def create
         owner = Owner.new(
-            name: owner_params[:name],
-            password: owner_params[:password],
-            email: owner_params[:email],
-            phone_number: owner_params[:phone_number]
+            name: params[:name],
+            password: params[:password],
+            email: params[:email],
+            phone_number: params[:phone_number]
         )
-
+            
         if owner.save!
             token = encode_token(owner.id)
             render json: {owner: owner, token: token}
@@ -40,6 +40,6 @@ class Api::V1::OwnersController < ApplicationController
     private 
 
     def owner_params
-      params.permit(:name, :password, :email, :phone_number)
+      params.require(:owner).permit(:name, :password, :email, :phone_number)
     end
 end
