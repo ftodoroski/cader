@@ -10,6 +10,7 @@ const Auth = () => {
                 <Signup history={history}/>
             </div>
         )
+        
 }
 
 export default Auth
