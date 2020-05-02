@@ -13,3 +13,12 @@ export const autoLogin = (response) => {
 export const logOut = () => {
     return { type: "LOG_OUT", payload: null }
 }
+
+export const getOwnerProperties = (response) => {
+    return { type: "GET_PROPERTIES", payload: response }
+}
+
+export const getUnoccupiedUnits = (response) => {
+    return { type: "GET_UNOCCUPIED_UNITS", payload: response }
+}
+

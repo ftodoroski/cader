@@ -9,16 +9,13 @@ import {withRouter} from 'react-router'
 class Navbar extends React.Component {
 
     handleLogOut = () => {
-        // localStorage.removeItem("token")
-        // this.props.logOut()
-
+        localStorage.removeItem("token")
+        this.props.logOut()
         this.props.history.push('/')
-        
-
     }
 
     render () {
-        console.log(history.location)
+        // console.log(history.location)
 
         return (
             <div>

@@ -9,6 +9,7 @@ import Auth from './Containers/Auth'
 import { autoLogin } from './actions'
 import history from './history'
 
+
 class App extends React.Component {
   
 
@@ -19,8 +20,10 @@ class App extends React.Component {
       }
     }
 
-    fetch('http://127.0.0.1:3001/api/v1/auto_login', obj).then(response => response.json()).then(response => {
-      this.props.autoLogin(response)
+    fetch('http://127.0.0.1:3001/api/v1/auto_login', obj)
+    .then(response => response.json())
+    .then(response => {
+       this.props.autoLogin(response)
     })
   }
 

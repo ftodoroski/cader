@@ -9,7 +9,9 @@ const defualtState = {
         password: "", 
         phone_number: "", 
     }, 
-    currentUser: {}
+    currentUser: {},
+    properties: [], 
+    unoccupiedUnits: []
 }
 
 export const reducer = (prevState = defualtState, action) => {
@@ -25,6 +27,12 @@ export const reducer = (prevState = defualtState, action) => {
             break;
         case "LOG_OUT":
             return { ...prevState, currentUser: '' }
+            break;
+        case "GET_PROPERTIES":
+            return { ...prevState, properties: action.payload }
+            break;
+        case "GET_UNOCCUPIED_UNITS":
+            return { ...prevState, unoccupiedUnits: action.payload }
             break;
         default:
             return prevState
