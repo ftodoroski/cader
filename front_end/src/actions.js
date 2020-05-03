@@ -22,3 +22,7 @@ export const getUnoccupiedUnits = (response) => {
     return { type: "GET_UNOCCUPIED_UNITS", payload: response }
 }
 
+export const toogleModal = (response) => {
+    return { type: "TOOGLE_MODAL", payload: response }
+}
+

@@ -1,17 +1,36 @@
 import React from "react"
 import { connect } from "react-redux"
-import { getUnoccupiedUnits } from "../actions"
+import { getUnoccupiedUnits, toogleModal } from "../actions"
+import ModalExampleDimmer from "../Components/Modal"
 
 class UnoccupiedUnitsContainer extends React.Component {
 
-    componentDidUpdate(prevProps) {
+    state = {
+        apartmentPressed: null, 
+        newUnoccupiedList: []
+    }
+
+    componentDidUpdate(prevProps, prevState) {
         if (this.props.currentUser !== prevProps.currentUser) {
             const ownerId = this.props.currentUser.id
-
+            
             fetch(`http://localhost:3001/api/v1/unoccupied_units/${ownerId}`)
             .then(response => response.json())
             .then(data => this.props.getUnoccupiedUnits(data))
+        } else if (prevProps.unoccupiedUnits !== this.props.unoccupiedUnits) {
+            this.props.getUnoccupiedUnits(this.props.unoccupiedUnits)
         }
+    }
+
+    // handleNewUnoccupiedList = (newList) => {
+    //     this.setState({
+    //         newUnoccupiedList: newList
+    //     })
+    // }
+
+    renderToogleModal = (e) => {
+        this.setState({apartmentPressed: e.target.value})
+        this.props.toogleModal(true)
     }
 
     renderTableData = () => {
@@ -21,14 +40,26 @@ class UnoccupiedUnitsContainer extends React.Component {
                     <td>{unit.name}</td>
                     <td>{`${unit.property.address} ${unit.property.city}, ${unit.property.state} ${unit.property.country} ${unit.property.zip_code}`}</td>
                     <td>${unit.property.price_per_unit}</td>
-                    <button>Add a Tenanat</button>
+                    <button 
+                        onClick={(e) => this.renderToogleModal(e)} 
+                        value={unit.id} 
+                    >
+                    Add a Tenanat
+                    </button>
                 </tr>
             )
         })
     }
+
+    resetApartmentState = () => {
+        this.setState({
+            apartmentPressed: null
+        })
+    }
     
     render() {  
-        
+        console.log("This is the state", this.state)
+        console.log("This is the props", this.props)
 
         return (
             <div className="unoccupied-units-container" >
@@ -42,6 +73,13 @@ class UnoccupiedUnitsContainer extends React.Component {
                         {this.renderTableData()}
                     </tbody>
                 </table>
+                <div className="unoccupied-units-modal">
+                    <ModalExampleDimmer 
+                        pathname={this.props.location.pathname} 
+                        apartmentPressed={this.state.apartmentPressed}
+                        resetApartmentState={this.resetApartmentState}
+                    />
+                </div>
             </div>
         )
     }
@@ -50,8 +88,10 @@ class UnoccupiedUnitsContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         currentUser: state.currentUser, 
-        unoccupiedUnits: state.unoccupiedUnits
+        unoccupiedUnits: state.unoccupiedUnits,
+        modalToogle: state.modalToogle,
+        modalDimmer: state.modalDimmer
     }
 }
 
-export default connect(mapStateToProps, { getUnoccupiedUnits }) (UnoccupiedUnitsContainer)
+export default connect(mapStateToProps, { getUnoccupiedUnits, toogleModal }) (UnoccupiedUnitsContainer)
