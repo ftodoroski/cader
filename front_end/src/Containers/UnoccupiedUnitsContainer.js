@@ -18,15 +18,19 @@ class UnoccupiedUnitsContainer extends React.Component {
             .then(response => response.json())
             .then(data => this.props.getUnoccupiedUnits(data))
         } else if (prevProps.unoccupiedUnits !== this.props.unoccupiedUnits) {
-            this.props.getUnoccupiedUnits(this.props.unoccupiedUnits)
+            
         }
     }
 
-    // handleNewUnoccupiedList = (newList) => {
-    //     this.setState({
-    //         newUnoccupiedList: newList
-    //     })
-    // }
+    componentDidMount () {
+        if (this.props.currentUser) {
+            const ownerId = this.props.currentUser.id
+
+            fetch(`http://localhost:3001/api/v1/unoccupied_units/${ownerId}`)
+            .then(response => response.json())
+            .then(data => this.props.getUnoccupiedUnits(data))
+        }
+    }
 
     renderToogleModal = (e) => {
         this.setState({apartmentPressed: e.target.value})
@@ -58,8 +62,8 @@ class UnoccupiedUnitsContainer extends React.Component {
     }
     
     render() {  
-        console.log("This is the state", this.state)
-        console.log("This is the props", this.props)
+        console.log("Props", this.props)
+        console.log("State", this.state)
 
         return (
             <div className="unoccupied-units-container" >
@@ -75,7 +79,6 @@ class UnoccupiedUnitsContainer extends React.Component {
                 </table>
                 <div className="unoccupied-units-modal">
                     <ModalExampleDimmer 
-                        pathname={this.props.location.pathname} 
                         apartmentPressed={this.state.apartmentPressed}
                         resetApartmentState={this.resetApartmentState}
                     />

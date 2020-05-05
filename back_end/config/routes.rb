@@ -16,6 +16,21 @@ Rails.application.routes.draw do
 
       # accessed if a user is authorized
       get "/user_is_authed", to: "auth#user_is_authed"
+
+      # gets the owners properties with params
+      get "/owner_properties/:id", to: "properties#owner_properties"
+
+      # get properties coordinates
+      get "/properties_coordinates/:id", to: "properties#properties_coordinates"
+
+      # get property coordinates
+      get "/property_coordinates/:id", to: "properties#property_coordinates"
+
+      # get unoccupied units 
+      get "/unoccupied_units/:id", to: "apartments#unoccupied_units"
+
+      # get unoccupied property units 
+      get "/unoccupied_property_units/:id", to: "apartments#unoccupied_property_units"
     end
   end
 end

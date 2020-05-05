@@ -18,11 +18,23 @@ export const getOwnerProperties = (response) => {
     return { type: "GET_PROPERTIES", payload: response }
 }
 
+export const getOriginalOwnerProperties = (response) => {
+    return { type: "GET_ORIGINAL_PROPERTIES", payload: response }
+}
+
 export const getUnoccupiedUnits = (response) => {
     return { type: "GET_UNOCCUPIED_UNITS", payload: response }
 }
 
 export const toogleModal = (response) => {
     return { type: "TOOGLE_MODAL", payload: response }
+}
+
+export const tooglePropertiesModal = (response) => {
+    return { type: "TOOGLE_PROPERTIES_MODAL", payload: response }
+}
+
+export const tooglePropertyModal = (response) => {
+    return { type: "TOOGLE_PROPERTY_MODAL", payload: response }
 }
 

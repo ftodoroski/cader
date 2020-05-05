@@ -1,0 +1,12 @@
+#logo-image {
+    display: block;
+    width: 150px;
+}
+
+body {
+    background-color: #f3f3f3;
+}
+
+.navbar-container {
+    background-color: #fff;
+}

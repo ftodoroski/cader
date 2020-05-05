@@ -14,7 +14,7 @@ class Map extends React.Component {
     componentDidMount() {
         if (history.location.pathname === "/properties") {
             const ownerId = this.props.currentUser.id
-            console.log(history.location.pathname)
+            // console.log(history.location.pathname)
     
             fetch(`http://localhost:3001/api/v1/properties_coordinates/${ownerId}`)
             .then(response => response.json())
@@ -65,7 +65,7 @@ class Map extends React.Component {
                         onClick={() => this.setState({selected: property})}
                     />)
                 })}
-                {console.log(this.state.selected)}
+                {/* {console.log(this.state.selected)} */}
                 
 
                 { this.state.selected && (

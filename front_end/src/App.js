@@ -8,6 +8,7 @@ import PropertyDetail from './Components/PropertyDetail'
 import Auth from './Containers/Auth'
 import { autoLogin } from './actions'
 import history from './history'
+import "./styles.css"
 
 
 class App extends React.Component {
@@ -39,14 +40,16 @@ class App extends React.Component {
 
   render() {
     return (
-        <div className="App">
+        <div className="App" >
           <NavBar />
-          <Switch>
-            <Route exact path="/" component={Auth} />
-            <Route exact path="/properties" component={PropertiesContainer} />
-            <Route exact path="/properties/:id" component={PropertyDetail} />
-            <Route exact path="/unoccupied-units" component={UnoccupiedUnitsContainer} />
-          </Switch>
+          <div className="app-body">
+            <Switch>
+              <Route exact path="/" component={Auth} />
+              <Route exact path="/properties" component={PropertiesContainer} />
+              <Route exact path="/properties/:id" component={PropertyDetail} />
+              <Route exact path="/unoccupied-units" component={UnoccupiedUnitsContainer} />
+            </Switch>
+            </div>
         </div>
     );
   }

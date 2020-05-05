@@ -11,9 +11,15 @@ const defualtState = {
     }, 
     currentUser: {},
     properties: [], 
+    originalProperties: [],
     unoccupiedUnits: [], 
     modalDimmer: "blurring", 
-    modalToogle: false
+    modalToogle: false,
+    modalPropertiesToogle: false,
+    modalPropertiesDimmer: "blurring",
+    modalPropertyToogle: false,
+    modalPropertyDimmer: "blurring"
+
 }
 
 export const reducer = (prevState = defualtState, action) => {
@@ -33,11 +39,20 @@ export const reducer = (prevState = defualtState, action) => {
         case "GET_PROPERTIES":
             return { ...prevState, properties: action.payload }
             break;
+        case "GET_ORIGINAL_PROPERTIES":
+            return { ...prevState, originalProperties: action.payload }
+            break;
         case "GET_UNOCCUPIED_UNITS":
             return { ...prevState, unoccupiedUnits: action.payload }
             break;
         case "TOOGLE_MODAL":
             return { ...prevState, modalToogle: action.payload }
+            break;
+        case "TOOGLE_PROPERTIES_MODAL":
+            return { ...prevState, modalPropertiesToogle: action.payload }
+            break;
+        case "TOOGLE_PROPERTY_MODAL": 
+            return { ...prevState, modalPropertyToogle: action.payload }
             break;
         default:
             return prevState

@@ -5,6 +5,8 @@ import history from '../history'
 import { logOut } from '../actions'
 // import { bindActionCreators } from 'redux'
 import {withRouter} from 'react-router'
+import Logo from "../logoImage"
+import "../styles.css"
 
 class Navbar extends React.Component {
 
@@ -14,14 +16,29 @@ class Navbar extends React.Component {
         this.props.history.push('/')
     }
 
-    render () {
-        // console.log(history.location)
+    renderMenu = () => {
+        return (
+            <div className="navbar">
+                <div className="unoccupied-list-button">
+                    <button onClick={() => this.props.history.push("/unoccupied-units")}>Unoccupied Units</button>
+                </div>
+                <div className="logout-button">
+                    <button onClick={this.handleLogOut}>Log out</button>
+                </div>
+            </div>
+        )
+    }
+
+    render () { 
+        console.log("Inside the Navbar", this.props)
 
         return (
-            <div>
-                <div>NavBar</div>
+            <div className="navbar-container">
+                <div id="logo-image-container">
+                    <Logo id="logo-image"/>
+                </div>
                 {history.location.pathname === "/" ? <Login /> : null}
-                {localStorage.token && <button onClick={this.handleLogOut}>Log out</button>}
+                {localStorage.token && this.renderMenu()}
             </div>
         )
     }

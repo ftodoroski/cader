@@ -1,19 +1,11 @@
-import React, { Component } from 'react'
-import { Button, Modal, Form } from 'semantic-ui-react'
+import React from 'react'
+import { Button, Modal, Form} from 'semantic-ui-react'
 import { connect } from "react-redux"
-import { toogleModal, getUnoccupiedUnits } from "../actions"
+import { tooglePropertyModal } from "../actions"
 import AddTenantIcon from "./AddTenantIcon"
 import history from '../history'
 
-// const initialState = {
-//     name: "",
-//     password: "",
-//     email: "",
-//     phone_number: "",
-//     apartment_id: null
-// }
-
-class ModalExampleDimmer extends Component {
+class PropertyDetailModal extends React.Component {
     state = {
         name: "",
         password: "",
@@ -24,74 +16,76 @@ class ModalExampleDimmer extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.apartmentPressed !== this.props.apartmentPressed) {
-            this.setState({ 
-                apartment_id: this.props.apartmentPressed
+            this.setState({
+                apartment_id: this.props.apartmentPressed.id
             })
+            // console.log("Inside the componentDidUpdate", this.props.apartmentPressed)
         }
     }
 
     handleChange = (e) => {
-        this.setState({[e.target.name]: e.target.value}, () => console.log(this.state))
+        this.setState({ [e.target.name]: e.target.value }, () => console.log(this.state))
     }
 
     AddTenant = (tenantInfo) => {
         const obj = {
-            method: "POST", 
+            method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }, 
+            },
             body: JSON.stringify(tenantInfo)
         }
 
         fetch("http://localhost:3001/api/v1/tenants", obj)
-        .then(response => response.json())
-        .then(data => console.log("Successfully Added to Tenants", data))
-        .catch(error => console.log("Error", error))
+            .then(response => response.json())
+            .then(data => {
+                console.log("Successfully Added to Tenants", data)
+                this.props.handleApartmentsAddRender(data, this.props.apartmentPressed, this.getTodaysDate())
+            })
+            .catch(error => console.log("Error", error))
     }
-    
+
     getTodaysDate = () => {
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
-        let mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        let mm = String(today.getMonth() + 1).padStart(2, '0');
         let yyyy = today.getFullYear();
-        
+
         return mm + '/' + dd + '/' + yyyy;
     }
-    
+
     chanageApartmentStatus = () => {
-        const apartment = this.props.apartmentPressed
-        const payload  = {
-            occupied: true, 
+        const apartment = this.props.apartmentPressed.id
+        const payload = {
+            occupied: true,
             move_in_date: this.getTodaysDate()
         }
-        
+
         const obj = {
-            method: "PATCH", 
+            method: "PATCH",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }, 
+            },
             body: JSON.stringify(payload)
         }
-        
+
         fetch(`http://localhost:3001/api/v1/apartments/${apartment}`, obj)
-        .then(response => response.json())
-        .then(data => {
-            
-            const newList = this.props.unoccupiedUnits.filter(units => {
-                return units.id !== data.id
+            .then(response => response.json())
+            .then(data => {
+                console.log("Successfully updated", data)
             })
-            console.log("Successfully updated", data, newList)
-            this.props.getUnoccupiedUnits(newList)
-        })
-        .catch(error => console.log("Error", error))
+            .catch(error => console.log("Error", error))
     }
-    
+    // May need to increase occupied units in the property model
+
     handleSubmit = (e) => {
         e.preventDefault()
-        const tenantInfo = { 
-            ...this.state, 
+        const tenantInfo = {
+            name: this.state.name,
+            password: this.state.password,
+            email: this.state.email,
             phone_number: parseInt(this.state.phone_number),
             apartment_id: parseInt(this.state.apartment_id)
         }
@@ -105,22 +99,18 @@ class ModalExampleDimmer extends Component {
             phone_number: "",
             apartment_id: null
         })
-        this.props.toogleModal(false)
+        this.props.tooglePropertyModal(false)
     }
 
-    handleToogleModal = () => {
-        this.props.toogleModal(false)
-        this.props.resetApartmentState()
-    }
 
     render() {
-        // console.log(history)
-    
+        // console.log(this.props)
+
         return (
             <div>
                 <Modal dimmer={'blurring'}
-                     open={this.props.modalToogle}
-                    onClose={this.handleToogleModal}
+                    open={this.props.modalPropertyToogle}
+                    onClose={() => this.props.tooglePropertyModal(false)}
                 >
                     <Modal.Header>Add a Tenant to this Unit</Modal.Header>
                     <Modal.Content image>
@@ -129,42 +119,42 @@ class ModalExampleDimmer extends Component {
                             <Form onSubmit={(e) => this.handleSubmit(e)}>
                                 <Form.Field>
                                     <label>Full Name</label>
-                                    <input 
-                                        placeholder='Full Name' 
-                                        name="name" 
+                                    <input
+                                        placeholder='Full Name'
+                                        name="name"
                                         onChange={(e) => this.handleChange(e)}
                                         value={this.state.name}
                                     />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Email</label>
-                                    <input 
-                                        placeholder='Email' 
-                                        name="email" 
-                                        onChange={(e) => this.handleChange(e)} 
+                                    <input
+                                        placeholder='Email'
+                                        name="email"
+                                        onChange={(e) => this.handleChange(e)}
                                         value={this.state.email}
                                     />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Password</label>
-                                    <input 
-                                        placeholder='Password' 
-                                        name="password" 
-                                        onChange={(e) => this.handleChange(e)} 
-                                        type="password" 
+                                    <input
+                                        placeholder='Password'
+                                        name="password"
+                                        onChange={(e) => this.handleChange(e)}
+                                        type="password"
                                         value={this.state.password}
                                     />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Phone Number</label>
-                                    <input 
-                                        placeholder='Phone Number' 
-                                        name="phone_number" 
-                                        onChange={(e) => this.handleChange(e)} 
+                                    <input
+                                        placeholder='Phone Number'
+                                        name="phone_number"
+                                        onChange={(e) => this.handleChange(e)}
                                         value={this.state.phone_number}
                                     />
                                 </Form.Field>
-                                <Button color="black" type='submit'>Submit</Button>
+                                <Button color="black" type='submit' >Submit</Button>
                             </Form>
                         </Modal.Description>
                     </Modal.Content>
@@ -178,10 +168,9 @@ class ModalExampleDimmer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        modalToogle: state.modalToogle,
-        modalDimmer: state.modalDimmer, 
-        unoccupiedUnits: state.unoccupiedUnits
+        modalPropertyToogle: state.modalPropertyToogle,
+        modalPropertyDimmer: state.modalPropertyDimmer
     }
 }
 
-export default connect(mapStateToProps, { toogleModal, getUnoccupiedUnits }) (ModalExampleDimmer)
+export default connect(mapStateToProps, { tooglePropertyModal }) (PropertyDetailModal)

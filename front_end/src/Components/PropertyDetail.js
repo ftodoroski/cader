@@ -1,14 +1,16 @@
 import React from 'react'
 import Map from "../Components/Map"
+import { connect } from "react-redux"
 import { withScriptjs, withGoogleMap } from "react-google-maps"
+import { tooglePropertyModal } from "../actions"
+import PropertyDetailModal from "./PropertyDetailModal"
 
 class PropertyDetail extends React.Component {
 
     state = {
-
+        apartmentPressed: null
     }
 
-    // I think you will need to make a custom route or include all of the apartmens for this property
     componentDidMount() {
         const id = this.props.match.params.id
         
@@ -20,6 +22,83 @@ class PropertyDetail extends React.Component {
             apartments: response.apartments
         }))
     }
+    
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.apartments !== this.state.apartments) {
+
+        }
+    }
+
+    handleApartmentsAddRender = (tenantInfo, apartmentObj, move_in_date) => {
+        const apartmentIndex = this.state.apartments.map(apartment => { return apartment.id }).indexOf(apartmentObj.id)
+        const obj = {
+            move_in_date: move_in_date, 
+            name: apartmentObj.name, 
+            occupied: true, 
+            property_id: apartmentObj.apartment_id, 
+            tenant: {
+                name: tenantInfo.name
+            }
+        }
+
+        let newApartments = this.state.apartments
+        newApartments.splice(apartmentIndex, 1, obj)
+        this.setState({
+            ...this.state, 
+            apartments: newApartments
+        })
+    }
+
+    deleteTenant = (tenantId) => {
+        fetch(`http://127.0.0.1:3001/api/v1/tenants/${tenantId}`, { method: "DELETE" })
+    }
+
+    handleRemoveTenant = (e) => {
+        const apartment = this.state.apartments.find(apartment => apartment.id === parseInt(e.target.id))
+        this.deleteTenant(apartment.tenant.id)
+
+        const apartmentIndex = this.state.apartments.map(apartment => { return apartment.id }).indexOf(apartment.id)
+        console.log(apartment)
+        const obj = {
+            move_in_date: "",
+            name: apartment.name,
+            occupied: false,
+            property_id: apartment.apartment_id,
+        }
+
+        let newApartments = this.state.apartments
+        newApartments.splice(apartmentIndex, 1, obj)
+        this.setState({
+            ...this.state,
+            apartments: newApartments
+        })
+
+        this.toogleOccupiedStatus(apartment)
+    }
+
+    toogleOccupiedStatus = (apartment) => {
+        const payload = {
+            occupied: false,
+            move_in_date: null
+        }
+
+        const obj = {
+            method: "PATCH",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        }
+
+        fetch(`http://localhost:3001/api/v1/apartments/${apartment.id}`, obj)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Successfully updated", data)
+            })
+            .catch(error => console.log("Error", error))
+    }
+
 
     renderTableData = () => {
         return this.state.apartments.map(apartment => {
@@ -29,12 +108,24 @@ class PropertyDetail extends React.Component {
                 <td>{apartment.tenant ? apartment.tenant.name : ""}</td>
                 <td>${this.state.property.price_per_unit}</td>
                 <td>{apartment.move_in_date}</td>
+                {apartment.occupied ? <button id={apartment.id} value="remove" onClick={(e) => this.handleRemoveTenant(e)} >Remove a Tenant</button> : <button id={apartment.id} value="add" onClick={(e) => this.handleModalApartmentPressed(e)}>Add a Tenant</button>}
             </tr>
         })
     }
 
+    handleModalApartmentPressed = (e) => {
+        const apartment = this.state.apartments.find(apartment => apartment.id === parseInt(e.target.id))
+
+        this.setState({
+            apartmentPressed: apartment
+        })
+        this.props.tooglePropertyModal(true)
+    }
+
     renderDetails = () => {
         const WrappedMap = withScriptjs(withGoogleMap(Map))
+        // console.log("Props", this.props)
+        // console.log("State", this.state)
 
         return (
             <div className="property-detail-container">
@@ -87,15 +178,27 @@ class PropertyDetail extends React.Component {
                         </table>
                     </div>
                 </div>
+                <div>
+                    <PropertyDetailModal 
+                        apartmentPressed={this.state.apartmentPressed} 
+                        handleApartmentsAddRender={this.handleApartmentsAddRender}
+                    />
+                </div>
             </div>
         )
     }
  
     render() {
+        // console.log("Checking for state", this.state)
+
         return (
             <div>{this.state.property && this.renderDetails()}</div>
         )
     }
 }
 
-export default PropertyDetail
+// const mapStateToProps = {
+
+// }
+
+export default connect(null, { tooglePropertyModal }) (PropertyDetail)
