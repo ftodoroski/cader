@@ -55,7 +55,7 @@ class Map extends React.Component {
                         position={{ lat: this.state.propertyCoordinates[0], lng: this.state.propertyCoordinates[1] }}
                         onClick={() => this.setState({ selected: this.state.propertyCoordinates })}
                     />
-                    // console.log(this.state.propertyCoordinates) 
+                    // {console.log(this.state.propertyCoordinates) }
                 :
                 this.state.propertyCoordinates.map(property => {
                     return (

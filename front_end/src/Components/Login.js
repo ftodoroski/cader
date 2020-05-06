@@ -33,15 +33,15 @@ class Login extends React.Component {
     render() {
         // console.log(this.props)
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Email</label>
-                    <input name="email" onChange={(e) => this.props.handleChange(e)} className="login" value={this.props.email}/>
+            <div className="login-container">
+                <form onSubmit={this.handleSubmit} className="login-form">
+                    <label id="email-label">Email</label>
+                    <input name="email" onChange={(e) => this.props.handleChange(e)} className="login" value={this.props.email} id="email-input"/>
                     
-                    <label>Password</label>
-                    <input name="password" onChange={(e) => this.props.handleChange(e)} className="login" type="password" value={this.props.password}/>
+                    <label id="password-label">Password</label>
+                    <input name="password" onChange={(e) => this.props.handleChange(e)} className="login" type="password" value={this.props.password} id="password-input"/>
 
-                    <button type="submit">Log In</button>
+                    <button type="submit" id="login-button">Log In</button>
                 </form>
             </div>
         )

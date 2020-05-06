@@ -42,11 +42,11 @@ class PropertyCard extends React.Component {
             <div className="property-card-container">
                 <div className="property-card" onClick={() => history.push(`/properties/${this.props.property.id}`)}>
                     <div className="property-card-image">
-                        <img src={this.props.property.images[0]} style={{width: "161px",  height: "108px"}} alt="House"/>
+                        <img src={this.props.property.images[0]} style={{width: "222px",  height: "170px"}} alt="House"/>
                     </div>
                     <div className="property-card-address">
                         <div className="property-card-street">
-                            <strong>{this.props.property.address}</strong>
+                            <strong style={{"font-size": "17px"}}>{this.props.property.address}</strong>
                         </div>
                         <div className="property-card-city-state-zip">
                             {this.props.property.city}, {this.props.property.state} {this.props.property.zip_code}
@@ -76,7 +76,9 @@ class PropertyCard extends React.Component {
                         <button onClick={() => {
                             this.props.tooglePropertiesModal(true)
                             this.props.handlePropertyPressed(this.props.property.id)
-                        }}>
+                        }}
+                            style = {{ "font-size": "12px", width: "132px", height: "34px", "background-color": "#282828", color: "#fff"}}
+                        >
                             Add a New Tenant
                         </button>
                     </div>

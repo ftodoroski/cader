@@ -19,11 +19,11 @@ class Navbar extends React.Component {
     renderMenu = () => {
         return (
             <div className="navbar">
-                <div className="unoccupied-list-button">
-                    <button onClick={() => this.props.history.push("/unoccupied-units")}>Unoccupied Units</button>
+                <div className="unoccupied-list-button" >
+                    <button onClick={() => this.props.history.push("/unoccupied-units")} className="nav-buttons">Unoccupied Units</button>
                 </div>
                 <div className="logout-button">
-                    <button onClick={this.handleLogOut}>Log out</button>
+                    <button onClick={this.handleLogOut} className="nav-buttons">Log out</button>
                 </div>
             </div>
         )
@@ -38,7 +38,7 @@ class Navbar extends React.Component {
                     <Logo id="logo-image"/>
                 </div>
                 {history.location.pathname === "/" ? <Login /> : null}
-                {localStorage.token && this.renderMenu()}
+                {localStorage.token && (history.location.pathname !== "/") && this.renderMenu()}
             </div>
         )
     }

@@ -35,13 +35,14 @@ class Signup extends React.Component {
     render() {
         return (
             <div>
-                <h1>Sign Up</h1>
+                <h1 className="signup-h1">Sign Up</h1>
+                <h2 className="signup-h2">It's quick and easy.</h2>
                 <form onSubmit={this.handleSubmit}>
-                    <input placeholder="Full name" name="name" className="signup" onChange={(e) => this.props.handleChange(e)}/>
-                    <input placeholder="Email" name="email" className="signup" onChange={(e) => this.props.handleChange(e)}/>
-                    <input placeholder="New password" name="password" className="signup" onChange={(e) => this.props.handleChange(e)} type="password"/>
-                    <input placeholder="Phone number" name="phone_number" className="signup" onChange={(e) => this.props.handleChange(e)}/>
-                    <button>Sign Up</button>
+                    <input placeholder="Full name" name="name" className="signup-inputs" onChange={(e) => this.props.handleChange(e)}/>
+                    <input placeholder="Email" name="email" className="signup-inputs" onChange={(e) => this.props.handleChange(e)}/>
+                    <input placeholder="New password" name="password" className="signup-inputs" onChange={(e) => this.props.handleChange(e)} type="password"/>
+                    <input placeholder="Phone number" name="phone_number" className="signup-inputs" onChange={(e) => this.props.handleChange(e)}/>
+                    <button className="signup-button">Sign Up</button>
                 </form>
             </div>
         )

@@ -29,6 +29,19 @@ class PropertiesContainer extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if (this.props.currentUser) {
+            const ownerId = this.props.currentUser.id
+
+            fetch(`http://localhost:3001/api/v1/owner_properties/${ownerId}`)
+                .then(response => response.json())
+                .then(data => {
+                    this.props.getOwnerProperties(data)
+                    this.props.getOriginalOwnerProperties(data)
+                })
+        }
+    }
+
     handlePropertyPressed = (propertyId) => {
         this.setState({propertyPressed: propertyId}, () => console.log(this.state.propertyPressed))
     }
@@ -59,7 +72,7 @@ class PropertiesContainer extends React.Component {
     render() {
         const WrappedMap = withScriptjs(withGoogleMap(Map))
         return (
-            <div style={{ marginBottom: "200px"}}>
+            <div style={{ marginBottom: "200px"}} className="properties-container">
                 <div className="properties-list-header">
                     <div className="properties-list-header-title">
                         <p><strong>Currenlty Owned Properties</strong></p>
@@ -72,22 +85,24 @@ class PropertiesContainer extends React.Component {
                         </select>
                     </div>                        
                 </div>
-                <div className="properties">
-                     {this.props.properties.map(property => {
-                         return <PropertyCard key={property.id} property={property} handlePropertyPressed={this.handlePropertyPressed}/>
-                    })}
-                </div>
-                <div style={{height: "641px", width: "576px"}} className="google-maps-api">
-                    <WrappedMap 
-                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
-                        loadingElement={<div style={{ height: "100%" }} />}
-                        containerElement={<div style={{ height: "100%" }} />}
-                        mapElement={<div style={{ height: "100%" }} />}
-                    />
-                </div>
-                <div>
-                    <AddTenantPropertiesModal propertyPressed={this.state.propertyPressed}/>
-                </div>
+                <div className="properties-map-container">
+                    <div className="properties">
+                        {this.props.properties.map(property => {
+                            return <PropertyCard key={property.id} property={property} handlePropertyPressed={this.handlePropertyPressed}/>
+                        })}
+                    </div>
+                    <div style={{height: "900px", width: "576px"}} className="google-maps-api">
+                        <WrappedMap 
+                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
+                            loadingElement={<div style={{ height: "100%" }} />}
+                            containerElement={<div style={{ height: "100%" }} />}
+                            mapElement={<div style={{ height: "100%" }} />}
+                        />
+                    </div>
+                    <div>
+                        <AddTenantPropertiesModal propertyPressed={this.state.propertyPressed}/>
+                    </div>
+                 </div>   
             </div>
         )
     }
