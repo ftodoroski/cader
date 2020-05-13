@@ -30,7 +30,7 @@ class Navbar extends React.Component {
     }
 
     render () { 
-        console.log("Inside the Navbar", this.props)
+        // console.log("Inside the Navbar", this.props)
 
         return (
             <div className="navbar-container">

@@ -20,7 +20,9 @@ class Map extends React.Component {
             .then(response => response.json())
             .then(data => this.setState({propertyCoordinates: data}))   
         } else {
-            const propertyId = history.location.pathname[history.location.pathname.length - 1]
+            // const propertyId = history.location.pathname[history.location.pathname.length - 1]
+            const propertyId = history.location.pathname.split("/")[2]
+            // console.log(history.location.pathname.split("/")[2])
    
             fetch(`http://localhost:3001/api/v1/property_coordinates/${propertyId}`)
             .then(response => response.json())

@@ -168,8 +168,8 @@ class UnoccupiedUnitsContainer extends React.Component {
     }
 
     render() {
-        console.log("Props", this.props)
-        console.log("State", this.state)
+        // console.log("Props", this.props)
+        // console.log("State", this.state)
 
         return (
             <div className="unoccupied-units-container" >

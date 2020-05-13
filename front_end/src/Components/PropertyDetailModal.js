@@ -19,7 +19,7 @@ class PropertyDetailModal extends React.Component {
             this.setState({
                 apartment_id: this.props.apartmentPressed.id
             })
-            // console.log("Inside the componentDidUpdate", this.props.apartmentPressed)
+            // console.log("Inside the componentDidUpdate", "- checking for apartmentPressed",this.props.apartmentPressed)
         }
     }
 
@@ -90,6 +90,7 @@ class PropertyDetailModal extends React.Component {
             apartment_id: parseInt(this.state.apartment_id)
         }
 
+        // console.log(tenantInfo)
         this.chanageApartmentStatus()
         this.AddTenant(tenantInfo)
         this.setState({

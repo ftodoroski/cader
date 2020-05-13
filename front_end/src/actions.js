@@ -5,6 +5,9 @@ export const handleChange = (e) => {
 export const handleSignupLogin = (response) => {
     return { type: "SET_CURRENT_USER", payload: response.owner }
 }
+export const resetLoginInput = () => {
+    return { type: "RESET_LOGIN_INPUT" }
+}
 
 export const autoLogin = (response) => {
     return { type: "AUTO_LOGIN", payload: response.owner }

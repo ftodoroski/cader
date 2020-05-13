@@ -8,7 +8,7 @@ class Api::V1::AuthController < ApplicationController
 
           render json: {owner: owner, token: token}
         else
-          render json: {errors: "Incorrect Info"}
+          render json: {errors: "Incorrect Info. Please try again"}
         end
     end
     

@@ -267,15 +267,17 @@ class PropertyDetail extends React.Component {
         this.deleteTenant(apartment.tenant.id)
 
         const apartmentIndex = this.state.apartments.map(apartment => { return apartment.id }).indexOf(apartment.id)
-        console.log(apartment)
+        console.log("inside the handleRemoveTenant", apartment)
         const obj = {
             move_in_date: "",
+            id: apartment.id,
             name: apartment.name,
             occupied: false,
-            property_id: apartment.apartment_id,
+            property_id: apartment.property_id,
         }
 
         let newApartments = this.state.apartments
+        // console.log(newApartments)
         newApartments.splice(apartmentIndex, 1, obj)
         this.setState({
             ...this.state,
@@ -324,7 +326,7 @@ class PropertyDetail extends React.Component {
 
     handleModalApartmentPressed = (e) => {
         const apartment = this.state.apartments.find(apartment => apartment.id === parseInt(e.target.id))
-
+        // console.log(apartment)
         this.setState({
             apartmentPressed: apartment
         })

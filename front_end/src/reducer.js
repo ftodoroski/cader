@@ -54,6 +54,9 @@ export const reducer = (prevState = defualtState, action) => {
         case "TOOGLE_PROPERTY_MODAL": 
             return { ...prevState, modalPropertyToogle: action.payload }
             break;
+        case "RESET_LOGIN_INPUT": 
+            return { ...prevState, login: { email: "", password: "" }}
+            break;
         default:
             return prevState
     }
