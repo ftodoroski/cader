@@ -14,19 +14,20 @@ class PropertyDetailModal extends React.Component {
         apartment_id: null
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         if (prevProps.apartmentPressed !== this.props.apartmentPressed) {
             this.setState({
                 apartment_id: this.props.apartmentPressed.id
             })
             // console.log("Inside the componentDidUpdate", "- checking for apartmentPressed",this.props.apartmentPressed)
-        }
+        } 
     }
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value }, () => console.log(this.state))
     }
 
+    // Here - This one
     AddTenant = (tenantInfo) => {
         const obj = {
             method: "POST",
@@ -55,8 +56,10 @@ class PropertyDetailModal extends React.Component {
         return mm + '/' + dd + '/' + yyyy;
     }
 
+    // Here - This one
     chanageApartmentStatus = () => {
         const apartment = this.props.apartmentPressed.id
+    
         const payload = {
             occupied: true,
             move_in_date: this.getTodaysDate()
@@ -78,8 +81,8 @@ class PropertyDetailModal extends React.Component {
             })
             .catch(error => console.log("Error", error))
     }
-    // May need to increase occupied units in the property model
-
+    
+    // Here - This one
     handleSubmit = (e) => {
         e.preventDefault()
         const tenantInfo = {
@@ -90,7 +93,6 @@ class PropertyDetailModal extends React.Component {
             apartment_id: parseInt(this.state.apartment_id)
         }
 
-        // console.log(tenantInfo)
         this.chanageApartmentStatus()
         this.AddTenant(tenantInfo)
         this.setState({
@@ -104,8 +106,7 @@ class PropertyDetailModal extends React.Component {
     }
 
 
-    render() {
-        // console.log(this.props)
+    render() {   
 
         return (
             <div>
