@@ -47,7 +47,8 @@ body {
 .login-form{
     /* background: #f3f3f3; */
     margin-top: 20px;
-    margin-right: 290px;
+    /* margin-right: 290px; */
+    margin-right: 13vw;
 }
 
 #email-input {
@@ -93,7 +94,7 @@ body {
 }
 
 .properties-container {
-    width: 65%;
+    width: 87%;
     /* border: 5px dashed green; */
     margin: auto;
     /* display: flex;
@@ -123,7 +124,7 @@ body {
     display: flex;
     /* justify-content: right; */
     justify-content: space-between;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
     /* border: 5px dashed yellowgreen; */
 }
 
@@ -212,12 +213,14 @@ th {
 }
 
 .signup-container{
-    margin-right: 290px;
+    /* margin-right: 290px; */
+    margin-right: 13vw;
     margin-top: 60px;
 }
 
 .auth-info-container {
-    margin-right: 300px;
+    /* margin-right: 300px; */
+    margin-right: 13vw;
     margin-top: 125px;
 }
 
@@ -253,22 +256,22 @@ th {
 }
 
 .property-detail-address {
-    margin-top: 20px;
+    margin-top: 1.5vw;
 }
 
 .property-detail-street {
-    font-size: 30px;
+    font-size: 2vw;
     font-family: Helvetica;
 }
 
 .property-detail-city-state-zip{
-    font-size: 29px;
+    font-size: 1.9vw;
     font-family: helvetica;
-    margin-top: 17px;
+    margin-top: 1.5vw;
 }
 
 .property-detail-metrics-container{
-    margin-top: 80px;
+    margin-top: 8vw;
     margin-bottom: 80px;
     /* border: 1px dashed red; */
     position: relative;
@@ -329,8 +332,8 @@ th {
  }
 
  .property-type-container {
-    position: absolute;
-    margin: -63px 0px 0px 1053px
+    /* position: absolute;
+    margin: -63px 0px 0px 1053px */
  }
 
  .building-size-container {

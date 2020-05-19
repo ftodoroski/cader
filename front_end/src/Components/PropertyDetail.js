@@ -420,7 +420,8 @@ class PropertyDetail extends React.Component {
                             <img
                                 src={image}
                                 key={idx}
-                                style={{ width: "475px", height: "313.81px" }}
+                                // style={{ width: "475px", height: "313.81px" }}
+                                style={{ width: "24.7vw", height: "17vw" }}
                                 alt="Building"
                             />
                         )
@@ -435,7 +436,7 @@ class PropertyDetail extends React.Component {
                             {this.state.property.city}, {this.state.property.state} {this.state.property.zip_code}
                         </div>
                     </div>
-                    <div className="property-detail-metrics-container">
+                    {/* <div className="property-detail-metrics-container">
                         <div className="date-purchased-container">
                             <p className="metric-header">Date Purchased</p>
                             <p className="metrics-info">{this.state.property.date_purchased}</p>
@@ -480,9 +481,74 @@ class PropertyDetail extends React.Component {
                             <p className="metric-header">Year Built</p>
                             <p className="metrics-info">{this.state.property.year_built}</p>
                         </div>
+                    </div> */}
+                    <div className="property-detail-metrics-container">
+
+                        <div className="row1-container" style={{display: "flex", "flex-direction": "row", width: "100%", "margin-bottom": "5vw"}}>
+                            <div className="item1" style={{flex: "1 1 auto", "width": "21%"}}>
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Date Purchased</p>
+                                <p className="metrics-info" >01/27/2005</p>
+                            </div>
+                        
+
+                            <div className="item1" style={{flex: "1 1 auto", width: "21%"}}>
+                                <p className="metric-header" style={{ "font-size": "1.5vw" }}>Purchase Amount</p>
+                                <p className="metrics-info">$3250000</p>
+                            </div>
+
+                            <div className="item1" style={{flex: "1 1 auto", width: "21%"}}>
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Mortgage Payable</p>
+                                <p className="metrics-info">$1500000</p>
+                            </div>
+
+                            <div className="item1" style={{flex: "1 1 auto", width: "21%"}}>
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Price Per Unit</p>
+                                <p className="metrics-info">$2500</p>
+                            </div>
+
+                            <div className="item1" style={{flex: "1 1 auto", width: "20%"}}>
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Revenue</p>
+                                <p className="metrics-info">$15000</p>
+                            </div>
+                        </div>
+
+                        <div className="row2-container" style={{display: "flex", "flex-direction": "row", width: "100%", "margin-bottom": "5vw"}}>
+                            <div className="item1" style={{flex: "1 1 auto", width: "21%"}}>
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Number of Units</p>
+                                <p className="metrics-info">6</p>
+                            </div>
+
+                            <div className="item1" style={{flex: "1 1 auto", width: "21%"}}>
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Occupied of Units</p>
+                                <p className="metrics-info">6</p>
+                            </div>
+
+                            <div className="item1" style={{flex: "1 1 auto", width: "21%"}}>
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Cap Rate</p>
+                                <p className="metrics-info">0%</p>
+                            </div>
+
+                            <div className="item1" style={{flex: "1 1 auto", width: "21%"}}>
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Property Type</p>
+                                <p className="metrics-info">Multi-family</p>
+                            </div>
+
+                            <div className="item1" style={{flex: "1 1 auto", width: "20%"}}>
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Building Size</p>
+                                <p className="metrics-info">20000</p>
+                            </div>
+                        </div>
+
+                        <div className="row3-container" style={{"margin-bottom": "5vw"}}>
+                            <div className="year-built-container">
+                                <p className="metric-header" style={{"font-size": "1.5vw"}}>Year Built</p>
+                                <p className="metrics-info">1997</p>
+                            </div>
+                        </div>
+
                     </div>
                     <div className="property-detail-google-map">
-                        <div style={{ height: "641px", width: "1524px" }} className="google-maps-api">
+                        <div style={{ height: "641px", width: "100%" }} className="google-maps-api">
                             <WrappedMap
                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
                                 loadingElement={<div style={{ height: "100%" }} />}
