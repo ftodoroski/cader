@@ -38,4 +38,30 @@ Landlords can:
 
 
 ### LogIn Page
+Basic Log in Features with authentication and authorization
 ![Log in](/readmeImages/login.png?raw=true "Log in")
+
+
+### Properties DashBoard 
+View all of your properties with metrics and on the Google Maps API
+![Properties](/readmeImages/dashboard.png?raw=true "Dashboard")
+
+
+### Add a Tenant  
+Checks if the property has available units to rent out with a nice UI design 
+![Properties](/readmeImages/addT.png?raw=true "add t")
+
+
+### Property Details   
+Closer look at the property with metrics such as number of units occupied, monthly rent, mortgage and more
+![Properties](/readmeImages/propdetail.png?raw=true "propDetail")
+
+
+### Individual Property with Tenants  
+We have all the units of that building which are occupied or unoccupied
+![Properties](/readmeImages/propdetail2.png?raw=true "propDetail")
+
+
+### View all Unoccupied Units + Add Tenants
+Table representing all of the units that are unoccupied of all the properties
+![Properties](/readmeImages/unoccupied.png?raw=true "propDetail")
