@@ -30,10 +30,10 @@ Landlords can:
     - Add/Remove tenants
 
 ## Features to be added
-    - Dark mode
-    - Recover account 
-    - Create a profile for the owner to update personal info
-    - Create personal info for tenants/profile
-    - owner can make a comment about tenant 
+- Dark mode
+- Recover account 
+- Create a profile for the owner to update personal info
+- Create personal info for tenants/profile
+- owner can make a comment about tenant 
 
 
