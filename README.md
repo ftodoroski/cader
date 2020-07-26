@@ -34,7 +34,7 @@ Landlords can:
 - Recover account 
 - Create a profile for the owner to update personal info
 - Create personal info for tenants/profile
-- owner can make a comment about tenant 
+- Owner can make a comment about tenant 
 
 
 ### LogIn Page
@@ -76,8 +76,3 @@ We have all the units of that building which are occupied or unoccupied
 Table representing all of the units that are unoccupied of all the properties
 ![Properties](/readmeImages/unoccupied.png?raw=true "propDetail")
 
-
-The site is live so check it out if you can 
-https://cader.herokuapp.com/
-Username: filiptodoroski@yahoo.com
-Password: 0000
