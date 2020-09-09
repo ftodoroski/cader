@@ -1,5 +1,4 @@
 class Api::V1::PropertiesController < ApplicationController
-# Might need to add the include to the create and update 
 
     def index
         properties = Property.all.with_attached_images
@@ -42,8 +41,6 @@ class Api::V1::PropertiesController < ApplicationController
         images = property.images.map{|image| url_for(image)}
         apartments = property.apartments.to_json(:include => [{ :tenant => { only: [:name, :id] } }])
 
-        # render json: property.to_json(:include => [{ :owner => { only: :name} }, :images])
-        # render json: property, :include => try it with this - so you dont need the .to_json because its older syntax
         render json: { property: property, images: images, apartments: JSON.parse(apartments) }
 
     end
@@ -72,6 +69,11 @@ class Api::V1::PropertiesController < ApplicationController
     private 
 
     def property_params
-      params.permit(:owner_id, :address, :city, :state, :country, :zip_code, :date_purchased, :purchased_amount, :mortgage_payable, :price_per_unit, :revenue, :number_of_units, :occupied_units, :cap_rate, :property_type, :building_size, :year_built)
+      params.permit(
+        :owner_id, :address, :city, :state, :country, :zip_code, 
+      :date_purchased, :purchased_amount, :mortgage_payable, 
+      :price_per_unit, :revenue, :number_of_units, :occupied_units, 
+      :cap_rate, :property_type, :building_size, :year_built
+      )
     end
 end

@@ -1,5 +1,4 @@
 class Api::V1::TenantsController < ApplicationController
-# Might need to add the include to the create and update 
 
     def index
         tenants = Tenant.all 

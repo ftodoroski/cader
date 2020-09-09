@@ -1,5 +1,4 @@
 class Api::V1::ApartmentsController < ApplicationController
-# Might need to add the include to the create and update 
 
     def index
         apartments = Apartment.all 
@@ -7,9 +6,6 @@ class Api::V1::ApartmentsController < ApplicationController
     end
 
     def unoccupied_units
-    #    apartments = Apartment.all 
-    #    render json: apartments, :include => { :property => { only: [:id, :address, :city, :country, :zip_code] } }
-
         unoccupied_units = []
         properties = Property.all.select { |property| property.owner.id == params[:id].to_i }
 

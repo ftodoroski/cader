@@ -1,9 +1,7 @@
 import React from 'react'
 import history from '../history'
-// import ModalExampleDimmer from "../Components/Modal"
 import { tooglePropertiesModal } from "../actions"
 import { connect } from "react-redux"
-// import AddTenantPropertiesModal from "../Components/AddTenantPropertiesModal"
 
 class PropertyCard extends React.Component {
 
@@ -23,8 +21,6 @@ class PropertyCard extends React.Component {
         .then(response => response.json())
         .then(data => data)
         .catch(error => console.log(error))
-
-        // console.log("Its being mounted")
     }
 
     monthyIncome = () => {
@@ -35,8 +31,6 @@ class PropertyCard extends React.Component {
     }
 
     render() {
-        // console.log(this.props)
-
 
         return (
             <div className="property-card-container">

@@ -5,14 +5,6 @@ import { toogleModal, getUnoccupiedUnits } from "../actions"
 import AddTenantIcon from "./AddTenantIcon"
 import history from '../history'
 
-// const initialState = {
-//     name: "",
-//     password: "",
-//     email: "",
-//     phone_number: "",
-//     apartment_id: null
-// }
-
 class ModalExampleDimmer extends Component {
     state = {
         name: "",
@@ -114,7 +106,6 @@ class ModalExampleDimmer extends Component {
     }
 
     render() {
-        // console.log(history)
     
         return (
             <div>

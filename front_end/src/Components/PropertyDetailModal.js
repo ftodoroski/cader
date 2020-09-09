@@ -19,7 +19,6 @@ class PropertyDetailModal extends React.Component {
             this.setState({
                 apartment_id: this.props.apartmentPressed.id
             })
-            // console.log("Inside the componentDidUpdate", "- checking for apartmentPressed",this.props.apartmentPressed)
         } 
     }
 
@@ -27,7 +26,6 @@ class PropertyDetailModal extends React.Component {
         this.setState({ [e.target.name]: e.target.value }, () => console.log(this.state))
     }
 
-    // Here - This one
     AddTenant = (tenantInfo) => {
         const obj = {
             method: "POST",
@@ -56,7 +54,6 @@ class PropertyDetailModal extends React.Component {
         return mm + '/' + dd + '/' + yyyy;
     }
 
-    // Here - This one
     chanageApartmentStatus = () => {
         const apartment = this.props.apartmentPressed.id
     
@@ -82,7 +79,6 @@ class PropertyDetailModal extends React.Component {
             .catch(error => console.log("Error", error))
     }
     
-    // Here - This one
     handleSubmit = (e) => {
         e.preventDefault()
         const tenantInfo = {
