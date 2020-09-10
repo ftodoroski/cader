@@ -64,9 +64,6 @@ class PropertiesContainer extends React.Component {
             default:
                 this.props.getOwnerProperties(defaultArray)
         }
-        console.log(e.target.value)
-        console.log(highestRevenue)
-        console.log(lowestRevenue)
     }
 
     render() {
