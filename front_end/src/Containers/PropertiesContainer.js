@@ -37,7 +37,6 @@ class PropertiesContainer extends React.Component {
                 .then(response => response.json())
                 .then(data => {
                     this.props.getOwnerProperties(data)
-                    this.props.getOriginalOwnerProperties(data)
                 })
         }
     }
@@ -46,7 +45,7 @@ class PropertiesContainer extends React.Component {
         this.setState({propertyPressed: propertyId}, () => console.log(this.state.propertyPressed))
     }
 
-    handleFilter = (e) => {
+    handleSort = (e) => {
         const defaultArray = this.props.originalProperties.map(ele => ele)
         const newHighestArray = this.props.originalProperties.map(ele => ele)
         const newLowestArray = this.props.originalProperties.map(ele => ele)
@@ -75,7 +74,7 @@ class PropertiesContainer extends React.Component {
                         <p><strong>Currenlty Owned Properties</strong></p>
                     </div>
                     <div className="properties-filter">
-                        <select onChange={(e) => this.handleFilter(e)}>
+                        <select onChange={(e) => this.handleSort(e)}>
                             <option value="default">Default</option>
                             <option value="highest-income">Highest Rental Income</option>
                             <option value="lowest-income">Lowest Rental Income</option>
